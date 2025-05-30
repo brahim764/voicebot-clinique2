@@ -3,9 +3,8 @@ const app = express();
 app.use(express.json());
 
 app.post('/voice', (req, res) => {
-  console.log('📞 Appel reçu de SignalWire');
-  res.setHeader('Content-Type', 'application/json');
-  res.status(200).json({
+  console.log("📞 Appel reçu de SignalWire");
+  res.json({
     commands: [
       {
         say: {
@@ -17,9 +16,8 @@ app.post('/voice', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`✅ Serveur démarré sur le port ${PORT}`);
 });
-
 
