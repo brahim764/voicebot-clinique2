@@ -1,21 +1,26 @@
-# Voicebot Clinique - Starter
-Ce dépôt est un point de départ fonctionnel pour connecter SignalWire à Render.
+# SignalWire Webhook - Clinique
 
-## Déploiement
-1. Clonez ce repo
-2. Connectez-le à Render (Web Service, Node)
-3. Définissez le Start Command: `npm start`
-4. Définissez le Build Command: `npm install`
-5. Assurez-vous que la route `/voice` soit accessible
+Application Flask minimale pour répondre à un appel SignalWire avec un message vocal en français.
 
-## Test
-Utilisez Postman ou appelez le numéro SignalWire avec le SWML suivant :
-```
----
-version: "1.0.0"
-sections:
-  main:
-    - redirect:
-        action: https://<ton-app>.onrender.com/voice
-        method: POST
-```
+## Fonctionnement
+
+Quand un appel arrive, SignalWire interroge l'URL `/webhook`. Cette app répond avec un document XML (SWML) contenant :
+
+> Bonjour, vous êtes bien à la clinique.
+
+## Déploiement sur Render
+
+1. Créez un dépôt GitHub avec ce code.
+2. Sur [Render.com](https://render.com), créez un **Web Service** connecté à ce dépôt.
+3. Render détectera Python automatiquement :
+   - Build Command : `pip install -r requirements.txt`
+   - Start Command : `gunicorn app:app`
+4. Une fois déployé, copiez l’URL Render (ex. `https://voicebot-clinic.onrender.com`).
+
+## Configuration SignalWire
+
+- Allez dans **Phone Numbers > [votre numéro]**
+- Choisissez : `Handle using SWML Script`
+- Dans **FETCH MAIN SWML FROM URL** :  
+  👉 `https://voicebot-clinic.onrender.com/webhook`
+- Méthode : `POST`
