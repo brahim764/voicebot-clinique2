@@ -4,6 +4,7 @@ app.use(express.json());
 
 app.post("/voice", (req, res) => {
   console.log("📞 Appel reçu de SignalWire");
+
   res.setHeader("Content-Type", "application/json");
   res.status(200).json({
     commands: [
@@ -19,5 +20,5 @@ app.post("/voice", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Serveur en ligne sur port ${PORT}`);
+  console.log(`✅ Serveur en ligne sur le port ${PORT}`);
 });
