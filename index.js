@@ -3,20 +3,20 @@ const app = express();
 app.use(express.json());
 
 app.post('/voice', (req, res) => {
-  console.log('📞 Appel reçu de SignalWire');
-
+  console.log('✅ Appel reçu de SignalWire');
   res.json({
     commands: [
       {
         say: {
-          text: "Bonjour, ceci est la réponse depuis Render.",
-          voice: "fr-CA-Wavenet-A"
+          text: "Bonjour, ceci est la réponse depuis Render. Tout fonctionne."
         }
       }
     ]
   });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("✅ Serveur en ligne sur port 3000 ou Render");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Serveur démarré sur le port ${PORT}`);
 });
+
