@@ -3,12 +3,12 @@ const app = express();
 app.use(express.json());
 
 app.post('/voice', (req, res) => {
-  console.log('✅ Appel reçu de SignalWire');
+  console.log("✅ Appel reçu de SignalWire");
   res.json({
     commands: [
       {
         say: {
-          text: "Bonjour, ceci est la réponse depuis Render. Tout fonctionne."
+          text: "Bonjour, bienvenue à la Clinique Lumière. Merci d’avoir appelé."
         }
       }
     ]
